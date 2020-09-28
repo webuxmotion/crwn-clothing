@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
 import HomePage from './pages/homepage/homepage.component';
 import ShopPage from './pages/shop/shop.component';
 import SignInSignUpPage from './pages/sign-in-sign-up/sign-in-sign-up.component';
 import Header from './components/header/header.component';
 import { auth, createUserProfileDocument } from './firebase/firebase.utils';
 import { setCurrentUser } from './redux/user/user.actions';
+import { selectCurrentUser } from './redux/user/user.selectors';
 import './App.css';
 
 class App extends Component {
@@ -59,8 +61,8 @@ class App extends Component {
 }
 
 export default connect(
-  ({ user}) => ({
-    currentUser: user.currentUser
+  createStructuredSelector({
+    currentUser: selectCurrentUser
   }), 
   dispatch => ({
     setCurrentUser: user => dispatch(setCurrentUser(user))
