@@ -18,6 +18,7 @@ const Header = ({ currentUser, isCartDropdown }) => (
     </Link>
     <div className="options">
       <Link to="/shop" className="option">SHOP</Link>
+      <Link to="/running" className="option">RUNNING</Link>
       <Link to="/contact" className="option">CONTACT</Link>
       {
         currentUser 
