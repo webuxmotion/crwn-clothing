@@ -9,26 +9,33 @@ import { selectCartHidden } from '../../redux/cart/cart.selectors';
 import { selectCurrentUser } from '../../redux/user/user.selectors';
 
 import { ReactComponent as Logo } from '../../assets/crown.svg';
-import './header.styles.scss';
+
+import { 
+  HeaderContainer,
+  LogoContainer,
+  OptionsContainer,
+  OptionDiv,
+  OptionLink
+} from './header.styles';
 
 const Header = ({ currentUser, isCartDropdown }) => (
-  <div className="header">
-    <Link to="/" className="logo-container">
+  <HeaderContainer>
+    <LogoContainer to="/">
       <Logo className="logo" />
-    </Link>
-    <div className="options">
-      <Link to="/shop" className="option">SHOP</Link>
-      <Link to="/running" className="option">RUNNING</Link>
-      <Link to="/contact" className="option">CONTACT</Link>
+    </LogoContainer>
+    <OptionsContainer>
+      <OptionLink to="/shop">SHOP</OptionLink>
+      <OptionLink to="/running">RUNNING</OptionLink>
+      <OptionLink to="/contact">CONTACT</OptionLink>
       {
         currentUser 
-          ? <div className="option" onClick={() => auth.signOut()}>SIGN OUT</div>
-          : <Link className="option" to="/signin">SIGN IN</Link>
+          ? <OptionDiv onClick={() => auth.signOut()}>SIGN OUT</OptionDiv>
+          : <OptionLink to="/signin">SIGN IN</OptionLink>
       }
       <CartIcon />
-    </div>
+    </OptionsContainer>
     { isCartDropdown ? <CartDropdown /> : null }
-  </div>
+  </HeaderContainer>
 );
 
 export default connect(
