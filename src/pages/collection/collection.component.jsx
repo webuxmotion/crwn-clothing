@@ -8,7 +8,6 @@ import './collection.styles.scss';
 
 const CollectionPage = ({ collection }) => {
   const { title, items } = collection;
-  console.log('collection', collection);
 
   return (
     <div className="collection-page">
