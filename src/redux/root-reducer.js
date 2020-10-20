@@ -11,7 +11,7 @@ export default persistReducer(
   {
     key: 'root',
     storage,
-    whitelist: ['cart']
+    whitelist: ['cart', 'user']
   },
   combineReducers({
     user: userReducer,
