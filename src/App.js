@@ -12,9 +12,16 @@ import SignInSignUpPage from './pages/sign-in-sign-up/sign-in-sign-up.component'
 import Header from './components/header/header.component';
 
 import { selectCurrentUser } from './redux/user/user.selectors';
+import { checkUserSession } from './redux/user/user.actions';
+
 import './App.css';
 
 class App extends Component {
+
+  componentDidMount() {
+    const { checkUserSession } = this.props;
+    checkUserSession();
+  }
   
   render() {
     return (
@@ -45,5 +52,8 @@ class App extends Component {
 export default connect(
   createStructuredSelector({
     currentUser: selectCurrentUser
+  }),
+  dispatch => ({
+    checkUserSession: () => dispatch(checkUserSession())
   })
 )(App);
